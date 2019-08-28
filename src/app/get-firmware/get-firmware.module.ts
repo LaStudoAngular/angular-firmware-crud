@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+// MODULES
+import { SharedModule } from '../@shared/shared.module';
 import { GetFirmwareRoutingModule } from './get-firmware-routing.module';
+
+// COMPONENTS
 import { GetFirmwareComponent } from './get-firmware/get-firmware.component';
 
 @NgModule({
   declarations: [GetFirmwareComponent],
-  imports: [CommonModule, GetFirmwareRoutingModule],
+  imports: [GetFirmwareRoutingModule, SharedModule],
 })
 export class GetFirmwareModule {}

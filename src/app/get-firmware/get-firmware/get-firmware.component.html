@@ -1,1 +1,17 @@
-<p>get-firmware works!</p>
+<h1 class="mat-headline">get info about firmware</h1>
+<form class="container" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input type="number" formControlName="boot_version" matInput placeholder="BootLoader Version">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" formControlName="fw_version" matInput placeholder="Firmware Version">
+  </mat-form-field>
+  <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">get firmware</button>
+</form>
+
+<div *ngIf="firmwares && firmwares.length !== 0">
+  <cr-output-message *ngFor="let firmware of firmwares" [firmware]="firmware"></cr-output-message>
+</div>
+
+<cr-error-message *ngIf="errorMessage" [message]="errorMessage"></cr-error-message>
+

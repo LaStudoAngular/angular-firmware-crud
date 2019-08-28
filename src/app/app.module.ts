@@ -13,6 +13,7 @@ import { CreateFirmwareModule } from './create-firmware/create-firmware.module';
 import { UpdateFirmwareModule } from './update-firmware/update-firmware.module';
 import { DeleteFirmwareModule } from './delete-firmware/delete-firmware.module';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
@@ -26,6 +27,7 @@ import { MatButtonModule, MatToolbarModule } from '@angular/material';
     DeleteFirmwareModule,
     MatToolbarModule,
     MatButtonModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
