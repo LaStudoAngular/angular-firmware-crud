@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  margin-top: 4rem;
+  padding: 0 15px;
+
+  & > .mat-headline {
+    text-transform: capitalize;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    width: 100%;
+  }
+
+  & > button {
+    text-transform: capitalize;
+  }
+}

@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+// MODULES
+import { SharedModule } from '../@shared/shared.module';
+import { CreateUpdateModule } from '../@shared/create-update.module';
 import { UpdateFirmwareRoutingModule } from './update-firmware-routing.module';
+
+// COMPONENTS
 import { UpdateFirmwareComponent } from './update-firmware/update-firmware.component';
 
 @NgModule({
   declarations: [UpdateFirmwareComponent],
-  imports: [CommonModule, UpdateFirmwareRoutingModule],
+  imports: [UpdateFirmwareRoutingModule, SharedModule, CreateUpdateModule],
 })
 export class UpdateFirmwareModule {}
