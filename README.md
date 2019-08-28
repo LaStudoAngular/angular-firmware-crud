@@ -1,27 +1,62 @@
-# AngularFirmwareCrudApp
+# Firmware CRUD
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+Платное приложение, выполненное для https://7gis.ru/
 
-## Development server
+## ТЗ
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Необходимо реализовать поддержку CRUD-операций с прошивками в любом удобном виде.
+Прошивка однозначно определяется 2 параметрами (2-х байтовые числа): версия загрузчика и версия прошивки.
 
-## Code scaffolding
+Так же у прошивки есть файл, содержащий саму прошивку (расширение .bin, не более 1МБ), ее статус:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`DEPRECATED` - отмененная прошивка
+`CASUAL` - обычная прошивка 
+`STABLE` - стабильная прошивка
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+И путь к файлу на сервере, в котором лежит прошивка.
+Информация о прошивке приходит в виде JSON, пример:
+        {
+    "BootLoaderVersion": 8322,
+    "FwVersion": 21,
+    "Status": "CASUAL",
+    "PathToFile": "/data/firmwares-storage/8322/21.bin"
+        }
+Адрес сервера: http://kub1.7gis.ru:30003/
+Типы запросов от клиента:
+GET (получение информации о прошивках):
+        2 параметра boot_version и fw_version:
+        - если оба равны 0, то получение информации о всех прошивках
+        - если только fw_version равно 0, то получение информации о всех прошивках для заданной версии загрузчика
+        - если оба не равны 0, то получение информации о выбранный версии прошивки
+        Ответы:
+                - 200 (Ок)
+                - 422 (Некорректные данные)
+                - 500 (Ошибка на сервере)
+POST (добавление прошивки):
+        Тело с form-data: 
+                - BootVersion - число
+                - FwVersion - число
+                - Status - текст(варианты описаны выше)
+                - Data - файл
+        Ответы:
+                - 200 (Добавлено)
+                - 422 (Некорректная прошивка)
+                - 500 (Ошибка на сервере)
+PUT (обновление прошивки):
+        Тело с form-data: 
+                - BootVersion - число
+                - FwVersion - число
+                - Status - текст(варианты описаны выше)
+                - Data - файл
+        Ответы:
+                - 202 (Будет обновлено)
+                - 422 (Некорректная прошивка/прошивки не существует)
+                - 500 (Ошибка на сервере)
+DELETE (удаление прошивки):
+        2 параметра boot_version и fw_version:
+                - оба не равны 0
+        Ответы: 
+                - 202 (Удаление будет выполнено)
+                - 422 (Прошивка не найдена)
+                - 500 (Ошибка на сервере)
+В теле ответов будет описание ошибки
