@@ -1,1 +1,20 @@
-<p>create-firmware works!</p>
+<h1 class="mat-headline">create new firmware</h1>
+<form class="container" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input type="number" formControlName="boot_version" matInput placeholder="BootLoader Version">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" formControlName="fw_version" matInput placeholder="Firmware Version">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Firmware Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <cr-upload-firmware (loadData)="onLoadData($event)"></cr-upload-firmware>
+  <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">create new firmware</button>
+</form>
+
+<cr-output-message *ngIf="firmware" [firmware]="firmware"></cr-output-message>
+<cr-error-message *ngIf="errorMessage" [message]="errorMessage"></cr-error-message>
