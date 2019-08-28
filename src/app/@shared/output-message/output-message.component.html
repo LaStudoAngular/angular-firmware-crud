@@ -1,0 +1,7 @@
+<mat-card *ngIf="firmware" class="output">
+  <h3 class="output__title mat-card-title">firmware info</h3>
+  <mat-list class="output__item">bootloader version: <span class="output__text">{{ firmware.BootloaderVersion }}</span></mat-list>
+  <mat-list class="output__item">firmware version: <span class="output__text">{{ firmware.FirmwareVersion }}</span></mat-list>
+  <mat-list class="output__item">firmware status: <span class="output__text">{{ firmware.Status }}</span></mat-list>
+  <mat-list class="output__item">firmware path: <span class="output__text">{{ firmware.Path }}</span></mat-list>
+</mat-card>

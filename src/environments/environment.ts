@@ -3,7 +3,31 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseURL: 'http://kub1.7gis.ru:30003/',
+  statuses: ['DEPRECATED', 'CASUAL', 'STABLE'],
+  FirmwareDictionary: {
+    GET: {
+      422: 'Некорректные данные',
+      500: 'Ошибка на сервере',
+    },
+    POST: {
+      422: 'Некорректная прошивка',
+      500: 'Ошибка на сервере',
+      SUCCESS: 'Прошивка успешно добавлена',
+    },
+    PUT: {
+      202: 'Будет обновлено',
+      422: 'Некорректная прошивка/прошивки не существует',
+      500: 'Ошибка на сервере',
+      SUCCESS: 'Прошивка успешно обновлена',
+    },
+    DELETE: {
+      202: 'Удаление будет выполнено',
+      422: 'Прошивка не найдена',
+      500: 'Ошибка на сервере',
+    },
+  },
 };
 
 /*

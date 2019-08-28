@@ -1,0 +1,10 @@
+<input
+  type="file"
+  accept=".bin, application/octet-stream"
+  hidden
+  #uploadBin
+  (change)="onSelectBinFile($event)"
+/>
+<button type="button" (click)="uploadBin.click()" mat-raised-button color="accent">
+  upload bin file
+</button>

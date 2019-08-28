@@ -1,0 +1,12 @@
+.error {
+  margin-top: 2rem;
+
+  &__title {
+    text-transform: capitalize;
+    text-align: center;
+  }
+
+  &__message {
+    color: red;
+  }
+}
