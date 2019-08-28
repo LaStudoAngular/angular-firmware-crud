@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  min-width: 500px;
+  overflow-x: auto;
+
+  & .mat-toolbar-row {
+    justify-content: center;
+  }
+}
+
+.active {
+  color: #ff4081;
+}
+
+.link {
+  text-transform: capitalize;
+}
